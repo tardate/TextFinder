@@ -83,6 +83,7 @@ public:
   float getFloat();  // float version of getValue
   float getFloat(char skipChar);  // as above but the given skipChar is ignored
 
+  int getString( char *post_string, char *buffer, int length); //puts string found up to post_string in buffer
   int getString( char *pre_string, char *post_string, char *buffer, int length); //puts string found between given delimiters in buffer
   // string will be truncated to fit the buffer length
   // end of string determined by a match of a character to the first char of close delimiter

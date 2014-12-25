@@ -133,31 +133,41 @@
     return false;
   }
 
-    // places the string between the prestring  and poststring in the given buffer
-    // buffer must be one more than the longest string to get
-    // the string will be truncated to fit the buffer length
-    // end of string determined by a single character match to the first char of poststring
-    // returns the number of characters placed in the buffer (0 means no valid data found)
+  // places the string up to poststring in the given buffer
+  // buffer must be one more than the longest string to get
+  // the string will be truncated to fit the buffer length
+  // end of string determined by a single character match to the first char of poststring
+  // returns the number of characters placed in the buffer (0 means no valid data found)
+  int TextFinder::getString( char *post_string, char *buffer, int length)
+  {
+    int index = 0;
+    *buffer = 0;
+    while(index < length-1 ){
+      char c = myRead();
+      if( c == 0 ){
+        return 0;   // timeout returns 0 !
+      }
+      else if( c == *post_string ){
+        buffer[index] = 0; // terminate the string
+        return index;               // data got successfully
+      }
+      else{
+        buffer[index++] = c;
+      }
+    }
+    buffer[index] = 0;
+    return index; // Note: buffer full before the closing post_string encountered
+  }
+
+  // places the string between the prestring  and poststring in the given buffer
+  // buffer must be one more than the longest string to get
+  // the string will be truncated to fit the buffer length
+  // end of string determined by a single character match to the first char of poststring
+  // returns the number of characters placed in the buffer (0 means no valid data found)
   int TextFinder::getString( char *pre_string, char *post_string, char *buffer, int length)
   {
     if( find(pre_string) ){
-      int index = 0;
-      *buffer = 0;
-      while(index < length-1 ){
-        char c = myRead();
-        if( c == 0 ){
-          return 0;   // timeout returns 0 !
-        }
-        else if( c == *post_string ){
-          buffer[index] = 0; // terminate the string
-          return index;               // data got successfully
-        }
-        else{
-          buffer[index++] = c;
-        }
-      }
-      buffer[index] = 0;
-      return index; // Note: buffer full before the closing post_string encountered
+      return getString(post_string,buffer,length);
     }
     return 0;    //failed to find the prestring
   }

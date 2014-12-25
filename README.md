@@ -65,6 +65,12 @@ float version of getValue
 
 float version that can ignore skipChars
 
+    int getString(char *post_string,char *buf,int length);
+
+Puts characters into the given buffer until the post_string is detected.  The end of string is determined by a match of a character to the first char post_string.
+String longer than the buffer length are truncated to fit.
+The function returns the number of characters placed in the buffer (0 means no valid data found)
+
     int getString(char *pre_string,char *post_string,char *buf,int length);
 
 Finds the pre_string and then puts the following characters into the given buffer until the post_string is detected.  The end of string is determined by a match of a character to the first char post_string.
