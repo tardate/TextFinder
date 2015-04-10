@@ -1,0 +1,11 @@
+{
+  "name": "TextFinder",
+  "keywords": "text, parser, stream",
+  "description": "Library for extracting information from a stream of data",
+  "repository":
+  {
+    "type": "git",
+    "url": "https://github.com/tardate/TextFinder"
+  },
+  "frameworks": "arduino",
+}
