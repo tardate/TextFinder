@@ -8,5 +8,16 @@
     "url": "https://github.com/tardate/TextFinder"
   },
   "frameworks": "arduino",
-  "platforms": "*"
+  "platforms": 
+  [
+    "atmelavr",
+  	"atmelsam",
+  	"timsp430",
+  	"titiva",
+  	"teensy",
+  	"freescalekinetis",
+  	"ststm32",
+  	"nordicnrf51",
+  	"nxplpc" 
+  ]
 }
