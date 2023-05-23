@@ -219,7 +219,6 @@
       boolean isNegative = false;
       boolean isFraction = false;
       long value = 0;
-      float fValue;
       char c;
       float fraction = 1.0;
 
