@@ -2,8 +2,7 @@
 
 > This is a GitHub repository hosting a copy of the [TextFinder](http://playground.arduino.cc/Code/TextFinder) Arduino library with original copyright (c) 2009 2010 Michael Margolis.
 
-
-TextFinder is a library for extracting information from a stream of data. It was created to be used with the Arduino Ethernet library to find particular fields and get strings or numeric values. I can also be used with Serial data.
+TextFinder is a library for extracting information from a stream of data. It was created to be used with the Arduino Ethernet library to find particular fields and get strings or numeric values. It can also be used with Serial data.
 
 Note that parsing functionality based on this library is now included in the Arduino 1.0  core. You can still this library with 1.0 but the core Stream parsing functionality in 1.0 is easier to use because you don’t have to create an instance of the TextFinder object in your sketch.  If you want to use core parsing available in 1.0, see the  Stream documentation for details as  some of the method  names have changed from the standalone TextFinder library.
 
