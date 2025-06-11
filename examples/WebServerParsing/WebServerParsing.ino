@@ -4,14 +4,14 @@
  * Respond to requests in the URL to change digital and analog output ports
  * show the number of ports changed and the value of the analog input pins.
  *
- * the following url turns digital pin 2 on and 3 off, analog output on pin 9 is set to 128, pin 11 to 255 
- * only onen parm http://192.168.1.177/2
+ * the following url turns digital pin 2 on and 3 off, analog output on pin 9 is set to 128, pin 11 to 255
+ * only one parm http://192.168.1.177/2
  *
  * http://192.168.1.177/?pinD2=1&pinD3=0&pinA9=128&pinA11=255
  */
- 
+
 #if ARDUINO > 18
-#include <SPI.h>         // needed for Arduino versions later than 0018 
+#include <SPI.h>         // needed for Arduino versions later than 0018
 #endif
 
 #include <Ethernet.h>
@@ -34,41 +34,41 @@ void loop()
 {
   Client client = server.available();
   if (client) {
-    TextFinder  finder(client );  
+    TextFinder  finder(client );
     // an http request ends with a blank line
     //    boolean current_line_is_blank = true;
-    while (client.connected()) {      
-      if (client.available()) {          
+    while (client.connected()) {
+      if (client.available()) {
         int digitalRequests = 0;  // counters to show the number of pin change requests
         int analogRequests = 0;
-        if( finder.find("GET /") ) {            
-          // find tokens starting with "pin" and stop on the first blank line  
-          while(finder.findUntil("pin", "\n\r")){  
+        if( finder.find("GET /") ) {
+          // find tokens starting with "pin" and stop on the first blank line
+          while(finder.findUntil("pin", "\n\r")){
             char type = client.read(); // D or A
             int pin = finder.getValue();
             int val = finder.getValue();
-            if( type == 'D') {                 
+            if( type == 'D') {
               Serial.print("Digital pin ");
               pinMode(pin, OUTPUT);
               digitalWrite(pin, val);
               digitalRequests++;
             }
-            else if( type == 'A'){                  
-              Serial.print("Analog pin ");  
-              analogWrite(pin, val); 
+            else if( type == 'A'){
+              Serial.print("Analog pin ");
+              analogWrite(pin, val);
               analogRequests++;
             }
-            else {  
-              Serial.print("Unexpected type "); 
-              Serial.print(type);                
-            }               
+            else {
+              Serial.print("Unexpected type ");
+              Serial.print(type);
+            }
             Serial.print(pin);
             Serial.print("=");
             Serial.println(val);
-          }                         
-        }        
+          }
+        }
         Serial.println();
-        
+
         // when we get here the findUntil has detected the blank line (a lf followed by cr)
         // so the http request has ended and we can send a reply
         // send a standard http response header
@@ -85,7 +85,7 @@ void loop()
         client.println("<br />");
         client.println("<br />");
 
-    
+
         // output the value of each analog input pin
         for (int i = 0; i < 6; i++) {
           client.print("analog input ");
@@ -94,12 +94,11 @@ void loop()
           client.print(analogRead(i));
           client.println("<br />");
         }
-        break;        
-      } 
+        break;
+      }
     }
     // give the web browser time to receive the data
     delay(1);
     client.stop();
   }
 }
-

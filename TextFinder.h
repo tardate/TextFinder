@@ -1,23 +1,6 @@
 /*
   TextFinder.h - a simple text parser for Arduino data streams
-  Copyright (c) 2009 2010 Michael Margolis.  All right reserved.
-
-  This library is free software; you can redistribute it and/or
-  modify it under the terms of the GNU Lesser General Public
-  License as published by the Free Software Foundation; either
-  version 2.1 of the License, or (at your option) any later version.
-
-  This library is distributed in the hope that it will be useful,
-  but WITHOUT ANY WARRANTY; without even the implied warranty of
-  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-  Lesser General Public License for more details.
-
-  You should have received a copy of the GNU Lesser General Public
-  License along with this library; if not, write to the Free Software
-  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
-
-  Version 1.1 - 21 August 2010 : added conditional compile for Stream class
-              - August 2011: added conditional compile for arduino 1.0
+  See https://github.com/tardate/TextFinder
 */
 
 
