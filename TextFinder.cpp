@@ -210,7 +210,7 @@
   // as integer version but returns a floating point value
     float TextFinder::getFloat()
     {
-       getFloat(NO_SKIP_CHAR);
+       return getFloat(NO_SKIP_CHAR);
     }
 
   // as above but the given skipChar is ignored
@@ -219,7 +219,6 @@
       boolean isNegative = false;
       boolean isFraction = false;
       long value = 0;
-      float fValue;
       char c;
       float fraction = 1.0;
 
